@@ -4,19 +4,8 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-     * ┌───┬───┬───┬───┐
-     * │ 7 │ 8 │ 9 │ / │
-     * ├───┼───┼───┼───┤
-     * │ 4 │ 5 │ 6 │ * │
-     * ├───┼───┼───┼───┤
-     * │ 1 │ 2 │ 3 │ - │
-     * ├───┼───┼───┼───┤
-     * │ 0 │ . │Ent│ + │
-     * └───┴───┴───┴───┘
-     */
     [0] = LAYOUT(
-        LGUI(KC_Z),LGUI(KC_Y),KC_ENTER,
-        LGUI(KC_X),LGUI(KC_C),LGUI(KC_V)
+        LGUI(KC_A),LGUI(KC_Y),LGUI(KC_Z),
+        LGUI(KC_V),LGUI(KC_C),LGUI(KC_X)
     )
 };
