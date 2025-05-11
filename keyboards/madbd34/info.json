@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD:keyboards/madbd34/info.json
     "manufacturer": "amkkr",
     "keyboard_name": "madbd3",
     "maintainer": "amkkr",
@@ -72,3 +73,9 @@
     }
 }
 
+=======
+    "build": {
+        "lto": true
+    }
+}
+>>>>>>> master:keyboards/mechwild/mokulua/info.json

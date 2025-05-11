@@ -2,11 +2,17 @@
 
 ![madbd3](imgur.com image replace me!)
 
+<<<<<<< HEAD:keyboards/madbd34/readme.md
 *A short description of the keyboard/project*
 
 * Keyboard Maintainer: [amkkr](https://github.com/amkkr)
 * Hardware Supported: *The PCBs, controllers supported*
 * Hardware Availability: *Links to where you can find this hardware*
+=======
+* Keyboard Maintainer: [Kyle McCreery](https://github.com/kylemccreery)
+* Hardware Supported: Mokulua v1.3
+* Hardware Availability: https://mechwild.com/product/mokulua/
+>>>>>>> master:keyboards/mechwild/mokulua/readme.md
 
 Make example for this keyboard (after setting up your build environment):
 
