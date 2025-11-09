@@ -1,24 +1,18 @@
-# madbd
+# madbd1
 
-![madbd](imgur.com image replace me!)
-
-<<<<<<< HEAD:keyboards/madbd1/readme.md
-*A short description of the keyboard/project*
-=======
-21 Key, 3 Encoder
->>>>>>> upstream/master:keyboards/handwired/wwa/soyuz/readme.md
+A custom split keyboard with 39 keys.
 
 * Keyboard Maintainer: [amkkr](https://github.com/amkkr)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Hardware Supported: RP2040
+* Hardware Availability: Custom build
 
 Make example for this keyboard (after setting up your build environment):
 
-    make madbd:default
+    make madbd1:default
 
 Flashing example for this keyboard:
 
-    make madbd:default:flash
+    make madbd1:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 

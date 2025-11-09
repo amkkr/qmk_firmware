@@ -1,12 +1,10 @@
 # madbd2
 
-![madbd2](imgur.com image replace me!)
+A custom split keyboard with 41 keys.
 
-*A short description of the keyboard/project*
-
-* Keyboard Maintainer: [n](https://github.com/amkkr)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Keyboard Maintainer: [amkkr](https://github.com/amkkr)
+* Hardware Supported: RP2040
+* Hardware Availability: Custom build
 
 Make example for this keyboard (after setting up your build environment):
 
