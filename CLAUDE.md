@@ -74,6 +74,41 @@ When conflicts occur with master:
 
 **Important**: Never use `git rebase` under any circumstances.
 
+## QMK Development Rules
+
+### Mandatory QMK CLI Usage
+
+**IMPORTANT: Always use official QMK CLI commands. Never use direct file manipulation (mkdir, touch, etc.) for QMK operations.**
+
+- **Creating new keyboards**: Use `qmk new-keyboard` command
+  ```bash
+  qmk new-keyboard -kb <keyboard_name> -u <username>
+  # Interactive mode will prompt for MCU type and layout
+  ```
+
+- **Creating new keymaps**: Use `qmk new-keymap` command
+  ```bash
+  qmk new-keymap -kb <keyboard> -km <keymap_name>
+  ```
+
+- **Before executing any QMK-related command**:
+  - Consult https://docs.qmk.fm/ documentation
+  - Use `qmk <command> --help` to verify correct usage
+  - Verify the command exists and is appropriate for the task
+
+- **Prohibited actions**:
+  - ❌ `mkdir keyboards/<name>` - Use `qmk new-keyboard` instead
+  - ❌ `touch keymap.c` - Use `qmk new-keymap` instead
+  - ❌ Manual file creation for QMK structures - Use QMK CLI commands
+
+### Official Documentation Reference
+
+Always refer to https://docs.qmk.fm/ for:
+- CLI commands: https://docs.qmk.fm/cli_commands
+- Hardware guidelines: https://docs.qmk.fm/hardware_keyboard_guidelines
+- RP2040 specific: https://docs.qmk.fm/platformdev_rp2040
+- Building firmware: https://docs.qmk.fm/newbs_building_firmware
+
 ## Build Commands
 
 ### Building Firmware
