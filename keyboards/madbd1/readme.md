@@ -2,7 +2,11 @@
 
 ![madbd](imgur.com image replace me!)
 
+<<<<<<< HEAD:keyboards/madbd1/readme.md
 *A short description of the keyboard/project*
+=======
+21 Key, 3 Encoder
+>>>>>>> upstream/master:keyboards/handwired/wwa/soyuz/readme.md
 
 * Keyboard Maintainer: [amkkr](https://github.com/amkkr)
 * Hardware Supported: *The PCBs, controllers supported*
