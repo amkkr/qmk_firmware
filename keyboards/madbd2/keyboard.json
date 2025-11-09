@@ -6,18 +6,14 @@
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": true,
-        "command": false,
-        "console": false,
         "extrakey": true,
-        "mousekey": true,
-        "nkro": false
+        "mousekey": true
     },
     "matrix_pins": {
         "cols": ["GP17","GP16","GP15","GP14","GP13","GP12","GP11","GP10","GP9","GP8","GP7","GP6"],
         "rows": ["GP21", "GP20", "GP19", "GP18"]
     },
     "processor": "RP2040",
-    "url": "",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0x0000",
