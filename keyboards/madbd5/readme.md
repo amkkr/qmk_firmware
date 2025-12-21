@@ -1,12 +1,10 @@
 # madbd5
 
-![madbd5](imgur.com image replace me!)
-
-*A short description of the keyboard/project*
+A custom keyboard with 5x16 matrix layout.
 
 * Keyboard Maintainer: [amkkr](https://github.com/amkkr)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Hardware Supported: RP2040
+* Hardware Availability: Custom build
 
 Make example for this keyboard (after setting up your build environment):
 
