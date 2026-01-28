@@ -21,6 +21,7 @@ You can set the global time for this by adding the following setting to your `co
 This setting is defined in milliseconds and defaults to 200ms. This is a good average for the majority of people.
 
 For more granular control of this feature, you can add the following to your `config.h`:
+
 ```c
 #define TAPPING_TERM_PER_KEY
 ```
@@ -226,6 +227,7 @@ Note: "`kc` held" in the "Physical key event" column means that the key wasn't p
 | 210  | `KC_B` up          | B              | B                 | B                          |
 
 ### Default Mode
+
 Example sequence 1 (the `L` key is also mapped to `KC_RGHT` on layer 2):
 
 ```
@@ -239,6 +241,7 @@ Example sequence 1 (the `L` key is also mapped to `KC_RGHT` on layer 2):
   |               | +--------------+   |
   +---------------|--------------------+
 ```
+
 The above sequence would send a `KC_RGHT`, since `LT(2, KC_A)` is held longer than the `TAPPING_TERM`.
 
 ---
@@ -256,6 +259,7 @@ Example sequence 2 (the `L` key is also mapped to `KC_RGHT` on layer 2):
   |            +--------------+ |      |
   +-----------------------------|------+
 ```
+
 The above sequence will not send `KC_RGHT` but `KC_A` `KC_L` instead, since `LT(2, KC_A)` is not held longer than the `TAPPING_TERM`.
 
 ---
@@ -273,6 +277,7 @@ Example sequence 3 (Mod-Tap):
   |       +--------------+    |        |
   +---------------------------|--------+
 ```
+
 In the above sequence, `SFT_T(KC_A)` has been released before the end of its `TAPPING_TERM` and as such will be interpreted as `KC_A`,
 followed by any key event that happened after the initial press of `SFT_T(KC_A)`. In this instance, the output would be `KC_A` `KC_X`.
 
@@ -471,12 +476,11 @@ Flow Tap is enabled by defining `FLOW_TAP_TERM` in your `config.h` with the desi
 
 By default, Flow Tap is enabled when:
 
-* The tap-hold key is pressed within `FLOW_TAP_TERM` milliseconds of the previous key press.
+- The tap-hold key is pressed within `FLOW_TAP_TERM` milliseconds of the previous key press.
 
-* The tapping keycodes of the previous key and tap-hold key are *both* among `KC_A`&ndash;`KC_Z`, `KC_COMM`, `KC_DOT`, `KC_SCLN`, `KC_SLSH` (the main alphas area of a conventional QWERTY layout) or `KC_SPC`.
+- The tapping keycodes of the previous key and tap-hold key are *both* among `KC_A`&ndash;`KC_Z`, `KC_COMM`, `KC_DOT`, `KC_SCLN`, `KC_SLSH` (the main alphas area of a conventional QWERTY layout) or `KC_SPC`.
 
 As an exception to the above, Flow Tap is temporarily disabled while a tap-hold key is undecided. This is to allow chording multiple mod-tap keys without having to wait out the Flow Tap term.
-
 
 ### is_flow_tap_key()
 
@@ -568,13 +572,13 @@ mod-taps, particularly in rolled keypresses when using home row mods.
 
 Notes:
 
-* Chordal Hold has no effect after the tapping term. 
+- Chordal Hold has no effect after the tapping term.
 
-* Combos are exempt from the opposite hands rule, since "handedness" is
+- Combos are exempt from the opposite hands rule, since "handedness" is
   ill-defined in this case. Even so, Chordal Hold's behavior involving combos
   may be customized through the `get_chordal_hold()` callback.
 
-An example of a sequence that is affected by “chordal hold”: 
+An example of a sequence that is affected by “chordal hold”:
 
 - `SFT_T(KC_A)` Down
 - `KC_C` Down
@@ -594,7 +598,7 @@ An example of a sequence that is affected by “chordal hold”:
 ```
 
 If the two keys are on the same hand, then this will produce `ac` with
-`SFT_T(KC_A)` settled as tapped the moment that `KC_C` is pressed. 
+`SFT_T(KC_A)` settled as tapped the moment that `KC_C` is pressed.
 
 If the two keys are on opposite hands and the `HOLD_ON_OTHER_KEY_PRESS` option
 enabled, this will produce `C` with `SFT_T(KC_A)` settled as held when `KC_C` is
@@ -603,6 +607,20 @@ pressed.
 Or if the two keys are on opposite hands and the `PERMISSIVE_HOLD` option is
 enabled, this will produce `C` with `SFT_T(KC_A)` settled as held when that
 `KC_C` is released.
+
+As an exception to the opposite hands rule, Chordal Hold supports combining
+multiple same-side modifiers within the tapping term. This is useful for
+multi-mod hotkeys like Ctrl + Shift + V. For instance with Chordal Hold together
+with either Permissive Hold or Hold On Other Key Press, the following input
+results in Ctrl + Shift + V being sent, supposing `J` and `K` are on the right
+hand side and `V` is on the left hand side:
+
+- `SFT_T(KC_J)` Down
+- `CTL_T(KC_K)` Down
+- `KC_V` Down
+- `KC_V` Up
+- `SFT_T(KC_J)` Up
+- `CTL_T(KC_K)` Up
 
 ### Chordal Hold Handedness
 
@@ -668,7 +686,6 @@ correspond physical keys to matrix positions.
 precedence.
 :::
 
-
 ### Per-chord customization
 
 Beyond the per-key configuration possible through handedness, Chordal Hold may
@@ -703,7 +720,6 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
 As shown in the last line above, you may use
 `get_chordal_hold_default(tap_hold_record, other_record)` to get the default tap
 vs. hold decision according to the opposite hands rule.
-
 
 ## Retro Tapping
 
@@ -750,7 +766,7 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
 
 If the programs you use bind an action to taps of modifier keys (e.g. tapping left GUI to bring up the applications menu or tapping left Alt to focus the menu bar), you may find that using retro-tapping falsely triggers those actions. To counteract this, you can define a `DUMMY_MOD_NEUTRALIZER_KEYCODE` in `config.h` that will get sent in between the register and unregister events of a held Mod-Tap key. That way, the programs on your computer will no longer interpret the mod suppression induced by retro-tapping as a lone tap of a modifier key and will thus not falsely trigger the undesired action.
 
-Naturally, for this technique to be effective, you must choose a `DUMMY_MOD_NEUTRALIZER_KEYCODE` for which no keyboard shortcuts are bound to. Recommended values are: `KC_RIGHT_CTRL` or `KC_F18`. 
+Naturally, for this technique to be effective, you must choose a `DUMMY_MOD_NEUTRALIZER_KEYCODE` for which no keyboard shortcuts are bound to. Recommended values are: `KC_RIGHT_CTRL` or `KC_F18`.
 Please note that `DUMMY_MOD_NEUTRALIZER_KEYCODE` must be a basic, unmodified, HID keycode, so values like `KC_NO`, `KC_TRANSPARENT`, or `KC_PIPE` (aka `S(KC_BACKSLASH)`) are not permitted.
 
 By default, only left Alt and left GUI are neutralized. If you want to change the list of applicable modifier masks, use the following in your `config.h`:
@@ -779,14 +795,14 @@ Do not use `MOD_xxx` constants like `MOD_LSFT` or `MOD_RALT`, since they're 5-bi
 
 [Auto Shift](features/auto_shift) has its own version of `retro tapping` called `retro shift`. It is extremely similar to `retro tapping`, but holding the key past `AUTO_SHIFT_TIMEOUT` results in the value it sends being shifted. Other configurations also affect it differently; see [here](features/auto_shift#retro-shift) for more information.
 
-### Speculative Hold
+## Speculative Hold
 
 Speculative Hold makes mod-tap keys more responsive by applying the modifier instantly on keydown, before the tap-hold decision is made. This is especially useful for actions like Shift+Click with a mouse, which can feel laggy with standard mod-taps.
 
 The firmware holds the modifier speculatively. Once the key's behavior is settled:
 
-* If held, the modifier remains active as expected until the key is released.
-* If tapped, the speculative modifier is canceled just before the tapping keycode is sent.
+- If held, the modifier remains active as expected until the key is released.
+- If tapped, the speculative modifier is canceled just before the tapping keycode is sent.
 
 Speculative Hold applies the modifier early but does not change the underlying tap-hold decision logic. Speculative Hold is compatible to use in combination with any other tap-hold options.
 
@@ -818,6 +834,6 @@ One thing that you may notice is that we include the key record for all of the "
 
 Well, it's simple really: customization. But specifically, it depends on how your keyboard is wired up. For instance, if each row is actually using a row in the keyboard's matrix, then it may be simpler to use `if (record->event.key.row == 3)` instead of checking a whole bunch of keycodes, which is especially good for those people using the tap-hold keys on the home row (see about *home row mods* [here](https://precondition.github.io/home-row-mods)). So, you could fine-tune those to not interfere with your normal typing.
 
-## Why are there no `*_kb` or `*_user` functions?!
+## Why are there no `*_kb` or `*_user` functions?
 
 Unlike many of the other functions here, there isn't a need (or even reason) to have a quantum- or keyboard-level function. Only user-level functions are useful here, so there is no need to mark them as such.
